@@ -1,13 +1,32 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>client</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
-</html>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Hotel & Restaurant Billing</title>
+   </head>
+   <body>
+     <section id="login-view">
+       <form id="login-form">
+         <h1>Hotel & Restaurant Billing</h1>
+         <input id="username" placeholder="Username" required />
+         <input id="password" type="password" placeholder="Password" required />
+         <button>Log in</button>
+         <p id="login-error"></p>
+       </form>
+     </section>
+
+     <section id="app-view" hidden>
+       <header>
+         <h1>Hotel & Restaurant Billing</h1>
+         <div><span id="who"></span> <button id="logout">Log out</button></div>
+       </header>
+       <nav id="tabs"></nav>
+       <main id="content">
+         <p>Welcome. Pages will appear here.</p>
+       </main>
+     </section>
+
+     <script type="module" src="/src/main.js"></script>
+   </body>
+   </html>

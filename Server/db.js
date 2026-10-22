@@ -69,6 +69,8 @@
        ['Ugali Fish', 'Main', 700],
        ['Chips', 'Side', 250],
        ['Soda', 'Drinks', 100],
+       ['Ugali Samaki', 'Main', 750],
+       ['Ugali Omena', 'Side', 150],
        ['Fresh Juice', 'Drinks', 200],
        ['Tea', 'Drinks', 80],
        ['Fruit Salad', 'Dessert', 300]
@@ -81,10 +83,20 @@
      [
        ['101', 'Single', 3000],
        ['102', 'Double', 4500],
-       ['201', 'Deluxe', 7000]
+       ['201', 'Two Bedrooms', 7000]
      ].forEach(r => addRoom.run(r[0], r[1], r[2]));
    }
 
+      const { hashPassword } = require('./password');
+
+   
+   if (db.prepare('SELECT COUNT(*) AS c FROM users').get().c === 0) {
+     const addUser = db.prepare('INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)');
+     addUser.run('admin', hashPassword('otwoma6572'), 'admin');
+     addUser.run('waiter', hashPassword('marvine6572'), 'waiter');
+     addUser.run('reception', hashPassword('otwoma123'), 'receptionist');
+     console.log('Default users created');
+   }
    const menuCount = db.prepare('SELECT COUNT(*) AS c FROM menu_items').get().c;
    const roomCount = db.prepare('SELECT COUNT(*) AS c FROM rooms').get().c;
    console.log(`Database ready. Menu items: ${menuCount}, rooms: ${roomCount}`);
