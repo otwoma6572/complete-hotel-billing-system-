@@ -1,5 +1,6 @@
       import './style.css';
    import { api } from './api.js';
+   import { viewMenu } from './menu.js';
 
    const loginView = document.querySelector('#login-view');
    const appView = document.querySelector('#app-view');
@@ -12,12 +13,20 @@
      receptionist: ['Bookings', 'Rooms', 'Bills']
    };
 
-   function showTab(name) {
+      function showTab(name) {
      document.querySelectorAll('#tabs button').forEach((b) => {
        b.classList.toggle('active', b.dataset.tab === name);
      });
-     document.querySelector('#content').innerHTML =
-       '<h2>' + name + '</h2><p>This page is coming soon.</p>';
+     const content = document.querySelector('#content');
+     const user = JSON.parse(localStorage.getItem('user'));
+
+     if (name === 'Menu') {
+       viewMenu(content, user).catch((err) => {
+         content.textContent = err.message;
+       });
+     } else {
+       content.innerHTML = '<h2>' + name + '</h2><p>This page is coming soon.</p>';
+     }
    }
 
    function showApp() {

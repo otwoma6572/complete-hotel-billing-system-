@@ -12,4 +12,11 @@
    #login-view { display: flex; justify-content: center; margin-top: 12vh; }
    #login-form { display: flex; flex-direction: column; gap: 10px; width: 300px; border: 2px solid #000; padding: 24px; }
    #login-error { font-weight: bold; margin: 0; }
-      nav button.active { background: #000; color: #fff; }
+   nav button.active { background: #000; color: #fff; }
+
+   h2 { margin-top: 0; }
+   form.inline { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+   table { border-collapse: collapse; width: 100%; margin-bottom: 24px; }
+   th, td { border: 1px solid #000; padding: 6px 8px; text-align: left; }
+   th { background: #eee; }
+   td button { padding: 3px 8px; }
