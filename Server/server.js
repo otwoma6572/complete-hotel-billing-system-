@@ -5,6 +5,7 @@
 
    const app = express();
    app.use(express.json());
+      app.use('/api/menu', require('./routes/menu'));
 
    app.get('/api/health', (req, res) => {
      res.json({ status: 'ok' });
