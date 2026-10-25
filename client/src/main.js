@@ -1,6 +1,7 @@
       import './style.css';
    import { api } from './api.js';
    import { viewMenu } from './menu.js';
+   import { viewOrders } from './orders.js';
 
    const loginView = document.querySelector('#login-view');
    const appView = document.querySelector('#app-view');
@@ -13,15 +14,17 @@
      receptionist: ['Bookings', 'Rooms', 'Bills']
    };
 
-      function showTab(name) {
+   const pages = { Menu: viewMenu, Orders: viewOrders };
+
+   function showTab(name) {
      document.querySelectorAll('#tabs button').forEach((b) => {
        b.classList.toggle('active', b.dataset.tab === name);
      });
      const content = document.querySelector('#content');
      const user = JSON.parse(localStorage.getItem('user'));
 
-     if (name === 'Menu') {
-       viewMenu(content, user).catch((err) => {
+     if (pages[name]) {
+       pages[name](content, user).catch((err) => {
          content.textContent = err.message;
        });
      } else {

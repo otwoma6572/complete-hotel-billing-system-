@@ -20,3 +20,6 @@
    th, td { border: 1px solid #000; padding: 6px 8px; text-align: left; }
    th { background: #eee; }
    td button { padding: 3px 8px; }
+      .menu-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; margin: 12px 0; }
+   .menu-pick label { display: flex; justify-content: space-between; align-items: center; border: 1px solid #000; padding: 6px 8px; gap: 8px; }
+   .menu-pick input { width: 64px; }
