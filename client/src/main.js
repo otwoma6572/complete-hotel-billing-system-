@@ -3,6 +3,7 @@
    import { viewMenu } from './menu.js';
    import { viewOrders } from './orders.js';
    import { viewRooms } from './rooms.js';
+  import { viewBookings } from './bookings.js';
 
 
    const loginView = document.querySelector('#login-view');
@@ -16,8 +17,7 @@
      receptionist: ['Bookings', 'Rooms', 'Bills']
    };
 
-      const pages = { Menu: viewMenu, Orders: viewOrders, Rooms: viewRooms };
-
+  const pages = { Menu: viewMenu, Orders: viewOrders, Rooms: viewRooms, Bookings: viewBookings };
 
    function showTab(name) {
      document.querySelectorAll('#tabs button').forEach((b) => {
