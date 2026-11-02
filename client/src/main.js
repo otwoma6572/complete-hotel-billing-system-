@@ -2,6 +2,8 @@
    import { api } from './api.js';
    import { viewMenu } from './menu.js';
    import { viewOrders } from './orders.js';
+   import { viewRooms } from './rooms.js';
+
 
    const loginView = document.querySelector('#login-view');
    const appView = document.querySelector('#app-view');
@@ -14,7 +16,8 @@
      receptionist: ['Bookings', 'Rooms', 'Bills']
    };
 
-   const pages = { Menu: viewMenu, Orders: viewOrders };
+      const pages = { Menu: viewMenu, Orders: viewOrders, Rooms: viewRooms };
+
 
    function showTab(name) {
      document.querySelectorAll('#tabs button').forEach((b) => {
