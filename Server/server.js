@@ -6,6 +6,10 @@
    const app = express();
    app.use(express.json());
       app.use('/api/menu', require('./routes/menu'));
+      app.use('/api/orders', require('./routes/orders'));
+      app.use('/api/rooms', require('./routes/rooms'));
+      app.use('/api/bookings', require('./routes/bookings'));
+      app.use('/api/bills', require('./routes/bills'));
 
    app.get('/api/health', (req, res) => {
      res.json({ status: 'ok' });
