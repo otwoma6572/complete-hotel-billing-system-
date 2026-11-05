@@ -1,9 +1,10 @@
-      import './style.css';
+   import './style.css';
    import { api } from './api.js';
    import { viewMenu } from './menu.js';
    import { viewOrders } from './orders.js';
    import { viewRooms } from './rooms.js';
-  import { viewBookings } from './bookings.js';
+   import { viewBookings } from './bookings.js';
+   import { viewBills } from './bills.js';
 
 
    const loginView = document.querySelector('#login-view');
@@ -16,8 +17,7 @@
      waiter: ['Orders', 'Menu', 'Bills'],
      receptionist: ['Bookings', 'Rooms', 'Bills']
    };
-
-  const pages = { Menu: viewMenu, Orders: viewOrders, Rooms: viewRooms, Bookings: viewBookings };
+   const pages = { Menu: viewMenu, Orders: viewOrders, Rooms: viewRooms, Bookings: viewBookings, Bills: viewBills };
 
    function showTab(name) {
      document.querySelectorAll('#tabs button').forEach((b) => {

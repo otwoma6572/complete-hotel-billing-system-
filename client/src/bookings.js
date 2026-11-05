@@ -1,4 +1,5 @@
    import { api } from './api.js';
+   import { createBill } from './billing.js';
 
    const esc = (s) =>
      String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -24,12 +25,16 @@
      if (bookings.length === 0) {
        html += '<p>No bookings yet.</p>';
      } else {
-       html += '<table><tr><th>#</th><th>Room</th><th>Guest</th><th>Phone</th><th>Check-in</th><th>Check-out</th><th>Status</th></tr>';
+       html += '<table><tr><th>#</th><th>Room</th><th>Guest</th><th>Phone</th><th>Check-in</th><th>Check-out</th><th>Status</th><th>Action</th></tr>';
        bookings.forEach((b) => {
          html +=
            '<tr><td>' + b.id + '</td><td>' + esc(b.room_number) + '</td><td>' + esc(b.guest_name) + '</td>' +
            '<td>' + esc(b.phone) + '</td><td>' + esc(b.check_in) + '</td><td>' + esc(b.check_out) + '</td>' +
-           '<td>' + esc(b.status) + '</td></tr>';
+           '<td>' + esc(b.status) + '</td><td>';
+         if (b.status === 'booked') {
+           html += '<button data-bill="' + b.id + '">Check out and bill</button>';
+         }
+         html += '</td></tr>';
        });
        html += '</table>';
      }
@@ -45,4 +50,21 @@
          alert(err.message);
        }
      });
+
+     const table = content.querySelector('table');
+     if (table) {
+       table.addEventListener('click', async (e) => {
+         const btn = e.target.closest('button[data-bill]');
+         if (!btn) return;
+         try {
+           const billId = await createBill('booking', btn.dataset.bill);
+           if (billId) {
+             alert('Bill #' + billId + ' created. Open the Bills tab to see it.');
+             viewBookings(content);
+           }
+         } catch (err) {
+           alert(err.message);
+         }
+       });
+     }
    }

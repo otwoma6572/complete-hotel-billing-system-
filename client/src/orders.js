@@ -1,4 +1,5 @@
    import { api } from './api.js';
+   import { createBill } from './billing.js';
 
    const esc = (s) =>
      String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -23,12 +24,16 @@
      if (orders.length === 0) {
        html += '<p>No orders yet.</p>';
      } else {
-       html += '<table><tr><th>#</th><th>Table</th><th>Items</th><th>Subtotal</th><th>Status</th><th>Time</th></tr>';
+       html += '<table><tr><th>#</th><th>Table</th><th>Items</th><th>Subtotal</th><th>Status</th><th>Time</th><th>Action</th></tr>';
        orders.forEach((o) => {
          const itemText = o.items.map((i) => i.qty + 'x ' + i.name).join(', ');
          html +=
            '<tr><td>' + o.id + '</td><td>' + esc(o.table_no) + '</td><td>' + esc(itemText) + '</td>' +
-           '<td>' + money(o.subtotal) + '</td><td>' + esc(o.status) + '</td><td>' + esc(o.created_at) + '</td></tr>';
+           '<td>' + money(o.subtotal) + '</td><td>' + esc(o.status) + '</td><td>' + esc(o.created_at) + '</td><td>';
+         if (o.status === 'open') {
+           html += '<button data-bill="' + o.id + '">Generate bill</button>';
+         }
+         html += '</td></tr>';
        });
        html += '</table>';
      }
@@ -56,4 +61,21 @@
          alert(err.message);
        }
      });
+
+     const table = content.querySelector('table');
+     if (table) {
+       table.addEventListener('click', async (e) => {
+         const btn = e.target.closest('button[data-bill]');
+         if (!btn) return;
+         try {
+           const billId = await createBill('order', btn.dataset.bill);
+           if (billId) {
+             alert('Bill #' + billId + ' created. Open the Bills tab to see it.');
+             viewOrders(content);
+           }
+         } catch (err) {
+           alert(err.message);
+         }
+       });
+     }
    }
