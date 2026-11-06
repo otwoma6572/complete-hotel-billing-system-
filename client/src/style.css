@@ -23,3 +23,17 @@
       .menu-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; margin: 12px 0; }
    .menu-pick label { display: flex; justify-content: space-between; align-items: center; border: 1px solid #000; padding: 6px 8px; gap: 8px; }
    .menu-pick input { width: 64px; }
+
+   /* styles for the receipt */
+   #modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; }
+   #modal-box { background: #fff; border: 2px solid #000; padding: 20px; width: 420px; max-height: 90vh; overflow: auto; }
+   #receipt h2 { text-align: center; margin-bottom: 4px; }
+   #receipt .center { text-align: center; margin: 2px 0; }
+   #receipt .right { text-align: right; }
+   #receipt th { background: #fff; }
+   @media print {
+     body * { visibility: hidden; }
+     #receipt, #receipt * { visibility: visible; }
+     #receipt { position: absolute; left: 0; top: 0; width: 100%; }
+     .no-print { display: none; }
+   }

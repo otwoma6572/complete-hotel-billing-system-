@@ -1,5 +1,6 @@
    import { api } from './api.js';
    import { createBill } from './billing.js';
+   import { showReceipt } from './receipt.js';
 
    const esc = (s) =>
      String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -59,7 +60,7 @@
          try {
            const billId = await createBill('booking', btn.dataset.bill);
            if (billId) {
-             alert('Bill #' + billId + ' created. Open the Bills tab to see it.');
+             await showReceipt(billId);
              viewBookings(content);
            }
          } catch (err) {
