@@ -5,7 +5,7 @@
    import { viewRooms } from './rooms.js';
    import { viewBookings } from './bookings.js';
    import { viewBills } from './bills.js';
-
+   import { viewReports } from './reports.js';
 
    const loginView = document.querySelector('#login-view');
    const appView = document.querySelector('#app-view');
@@ -13,11 +13,11 @@
 
    
    const tabsByRole = {
-     admin: ['Menu', 'Orders', 'Rooms', 'Bookings', 'Bills', 'Users'],
+     admin: ['Menu', 'Orders', 'Rooms', 'Bookings', 'Bills','Reports', 'Users'],
      waiter: ['Orders', 'Menu', 'Bills'],
      receptionist: ['Bookings', 'Rooms', 'Bills']
    };
-   const pages = { Menu: viewMenu, Orders: viewOrders, Rooms: viewRooms, Bookings: viewBookings, Bills: viewBills };
+   const pages = { Menu: viewMenu, Orders: viewOrders, Rooms: viewRooms, Bookings: viewBookings, Bills: viewBills, Reports: viewReports };
 
    function showTab(name) {
      document.querySelectorAll('#tabs button').forEach((b) => {

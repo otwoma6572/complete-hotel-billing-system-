@@ -10,7 +10,7 @@
       app.use('/api/rooms', require('./routes/rooms'));
       app.use('/api/bookings', require('./routes/bookings'));
       app.use('/api/bills', require('./routes/bills'));
-
+      app.use('/api/reports', require('./routes/reports'));
    app.get('/api/health', (req, res) => {
      res.json({ status: 'ok' });
    });
